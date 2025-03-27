@@ -14,7 +14,7 @@ class Tile:
         self.y = y
 
 
-# Initialize the main window
+
 window = tkinter.Tk()
 window.title("Snake")
 window.resizable(False, False)
@@ -23,7 +23,7 @@ canvas = tkinter.Canvas(window, bg="black", width=WINDOW_WIDTH, height=WINDOW_HE
 canvas.pack()
 window.update()
 
-# Center the window on the screen
+
 window_width = window.winfo_width()
 window_height = window.winfo_height()
 screen_width = window.winfo_screenwidth()
@@ -32,7 +32,7 @@ window_x = int((screen_width / 2) - (WINDOW_WIDTH / 2))
 window_y = int((screen_height / 2) - (WINDOW_HEIGHT / 2))
 window.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{window_x}+{window_y}")
 
-# Initialize the snake and food
+
 snake = Tile(5 * TITLE_SIZE, 5 * TITLE_SIZE)
 food = Tile(10 * TITLE_SIZE, 10 * TITLE_SIZE)
 snake_body = []
@@ -80,7 +80,7 @@ def move():
         food.y = random.randint(0, ROWS - 1) * TITLE_SIZE
         score += 1
 
-    #update snake body
+   
     for i in range(len(snake_body)-1,-1,-1):
         tile = snake_body[i]
         if(i == 0):
@@ -102,16 +102,16 @@ def draw():
 
     move()
 
-    # Clear the canvas
+   
     canvas.delete("all")
 
-    # Draw the snake
+   
     canvas.create_rectangle(snake.x, snake.y, snake.x + TITLE_SIZE, snake.y + TITLE_SIZE, fill="lime green")
 
-    # Draw the food
+    
     canvas.create_rectangle(food.x, food.y, food.x + TITLE_SIZE, food.y + TITLE_SIZE, fill="red")
 
-    # Draw the snake body
+    
     for tile in snake_body:
         canvas.create_rectangle(tile.x, tile.y, tile.x + TITLE_SIZE, tile.y + TITLE_SIZE, fill="lime green")
       
@@ -119,11 +119,11 @@ def draw():
         canvas.create_text(WINDOW_WIDTH/2, WINDOW_HEIGHT/2,font = "Arial 20", text = f"Game Over maruf bro:{score}",fill = "white")
     else:
         canvas.create_text(30,20, font = "Arial 10",text = f"Score:{score}",fill = "white")
-    # Schedule the next draw call
+    
     window.after(100, draw)
 
 
-# Corrected binding for key press events
+
 window.bind("<KeyPress>", change_direction)
 
 draw()
